@@ -75,7 +75,7 @@ export class PasteFileOperation implements IOperation {
 						return new Promise((resolve)=>{
 							setTimeout(() => {
 								this.editorService.openEditor({ resource: stat.resource }).then(()=>{
-									resolve(undefined);
+									resolve(void 0);
 								});
 							}, 1);
 						});

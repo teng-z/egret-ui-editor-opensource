@@ -40,30 +40,31 @@ export class CodeService implements ICodeService {
 	}
 
 	private async errorCheck(uri: monaco.Uri) {
-		let model = monaco.editor.getModel(uri);
+		//TODO eui-compiler
+		// let model = monaco.editor.getModel(uri);
 
-		const text = model.getValue();
+		// const text = model.getValue();
 		
-		typeInit();
-		const skinNode = parser.generateAST(text, '');
-		const errorInfo = skinNode.errors.shift();
+		// typeInit();
+		// const skinNode = parser.generateAST(text, '');
+		// const errorInfo = skinNode.errors.shift();
 
-		if (errorInfo) {
-			monaco.editor.setModelMarkers(model, "owner", [
-				{
-					startLineNumber: errorInfo.startLine,
-					startColumn: errorInfo.startColumn,
-					endLineNumber: errorInfo.endLine,
-					endColumn: errorInfo.endColumn,
-					message: errorInfo.message.split('\n')[0],
-					severity: monaco.MarkerSeverity.Error
-				}
-			]);
-		}
-		else {
-			monaco.editor.setModelMarkers(model, "owner", [
-			]);
-		}
+		// if (errorInfo) {
+		// 	monaco.editor.setModelMarkers(model, 'owner', [
+		// 		{
+		// 			startLineNumber: errorInfo.startLine,
+		// 			startColumn: errorInfo.startColumn,
+		// 			endLineNumber: errorInfo.endLine,
+		// 			endColumn: errorInfo.endColumn,
+		// 			message: errorInfo.message.split('\n')[0],
+		// 			severity: monaco.MarkerSeverity.Error
+		// 		}
+		// 	]);
+		// }
+		// else {
+		// 	monaco.editor.setModelMarkers(model, 'owner', [
+		// 	]);
+		// }
 	}
 
 	private registerCompletionItemProvider(): void {
@@ -150,7 +151,8 @@ export class CodeService implements ICodeService {
 
 	private registerCommand(editor: monaco.editor.IStandaloneCodeEditor): void {
 		// see https://github.com/microsoft/monaco-editor/issues/900
-		(editor as any)._commandService.addCommand({
+		// https://github.com/TypeFox/monaco-languageclient/blob/master/CHANGELOG.md
+		(monaco as any).CommandsRegistry.registerCommand({
 			id: 'editor.action.moveCursorLeftAndTriggerSuggest',
 			handler: (_: any, ...args: any[]) => {
 				// 把光标前移一格
@@ -166,7 +168,7 @@ export class CodeService implements ICodeService {
 			},
 		});
 
-		(editor as any)._commandService.addCommand({
+		(monaco as any).CommandsRegistry.registerCommand({
 			id: 'editor.action.egretEXmlInsertNamespace',
 			handler: (_: any, ...args: any[]) => {
 				console.log('-----------', args);
