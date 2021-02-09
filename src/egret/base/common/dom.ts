@@ -40,6 +40,7 @@ export function isInDOM(node: Node): boolean {
 		node = node.parentNode;
 	}
 	return false;
+	
 }
 
 /**

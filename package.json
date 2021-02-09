@@ -7,8 +7,8 @@
     "license": "ISC",
     "scripts": {
         "start": "electron .",
-        "setup-mac": "export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/&& npm install",
-        "setup-win": "set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/&& npm install",
+        "setup-mac": "export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/&& yarn",
+        "setup-win": "set ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/&& yarn",
         "build": "webpack --progress --config webpack.debug.config.js",
         "watch": "webpack --watch --progress --config  webpack.debug.config.js",
         "setup-cnpm": "npm install cnpm@6.0.0 -g"
